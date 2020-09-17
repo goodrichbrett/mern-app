@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 class AddTodo extends Component {
 	state = {
-		invalidForm: true,
+		// invalidForm: true,
 		formData: {
 			name: '',
 			isDone: false,
@@ -13,7 +13,7 @@ class AddTodo extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		this.props.handleAddMovie(this.state.formData);
+		this.props.handleAddTodo(this.state.formData);
 	};
 
 	handleChange = (e) => {
@@ -23,7 +23,7 @@ class AddTodo extends Component {
 		};
 		this.setState({
 			formData,
-			invalidForm: !this.formRef.current.checkValidity(),
+			// invalidForm: !this.formRef.current.checkValidity(),
 		});
 	};
 
@@ -32,6 +32,7 @@ class AddTodo extends Component {
 		return (
 			<>
 				<div className="AddTodo">
+					<h1>New Todo</h1>
 					<Form ref={this.formRef} onSubmit={this.handleSubmit}>
 						<FormGroup>
 							<Label for="name">Todo</Label>
@@ -64,6 +65,7 @@ class AddTodo extends Component {
 								id="dueDate"
 							></Input>
 						</FormGroup>
+						<button type="submit">Submit</button>
 					</Form>
 				</div>
 			</>
