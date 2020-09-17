@@ -65,7 +65,7 @@ class AddTodo extends Component {
 								id="dueDate"
 							></Input>
 						</FormGroup>
-						<button type="submit">Submit</button>
+						<Button type="submit">Submit</Button>
 					</Form>
 				</div>
 			</>
