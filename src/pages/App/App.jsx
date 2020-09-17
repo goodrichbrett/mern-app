@@ -9,6 +9,7 @@ import TodoList from '../../components/TodoList/TodoList';
 import './App.css';
 import AddTodo from '../../components/AddTodo/AddTodo';
 import * as todoAPI from '../../services/todoService';
+import EditTodo from '../../components/EditTodo/EditTodo';
 
 class App extends Component {
 	state = {
@@ -46,11 +47,21 @@ class App extends Component {
 				(state) => ({
 					todos: state.todos.filter((t) => t._id !== id),
 				}),
-				() => this.props.history.push('/todos')
+				() => this.props.history.push('/')
 			);
 		} else {
 			this.props.history.push('/login');
 		}
+	};
+
+	handleUpdateTodo = async (updatedTodoData) => {
+		const updatedTodo = await todoAPI.update(updatedTodoData);
+		const newTodosArray = this.state.todos.map((t) =>
+			t._id === updatedTodo._id ? updatedTodo : t
+		);
+		this.setState({ todos: newTodosArray }, () =>
+			this.props.history.push('/')
+		);
 	};
 
 	async componentDidMount() {
@@ -73,6 +84,7 @@ class App extends Component {
 							user={this.state.user}
 							handleAddTodo={this.handleAddTodo}
 							handleDeleteTodo={this.handleDeleteTodo}
+							handleUpdateTodo={this.handleUpdateTodo}
 						/>
 					)}
 				/>
@@ -110,6 +122,21 @@ class App extends Component {
 							handleAddTodo={this.handleAddTodo}
 						/>
 					)}
+				/>
+				<Route
+					exact
+					path="/edit"
+					render={({ location }) =>
+						authService.getUser() ? (
+							<EditTodo
+								handleUpdateTodo={this.handleUpdateTodo}
+								location={location}
+								user={this.state.user}
+							/>
+						) : (
+							<Redirect to="/login" />
+						)
+					}
 				/>
 			</>
 		);
