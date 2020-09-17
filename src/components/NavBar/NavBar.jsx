@@ -1,28 +1,55 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  Nav,
+  NavItem,
+  NavLink
+} from 'reactstrap';
 
 const NavBar = ({ user, handleLogout }) => {
-    return (
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+    
+  return (
     <>
       {user ?
-        <nav>
-          <div className="nav-wrapper">
-            <ul id="nav-mobile" className="right">
-              <li><a href=" " className="nav-link">Welcome, {user.name}</a></li>
-              <li><a href="/users" className="nav-link">Users</a></li>
-              <li><a href=" " className="nav-link" onClick={handleLogout}>Log Out</a></li>
-            </ul>
-          </div>
-        </nav>
+      <Navbar color="light" light expand="md">
+      <NavbarToggler onClick={toggle} />
+      <Collapse isOpen={isOpen} navbar>
+        <Nav className="mr-auto" navbar>
+          <NavItem>
+            <NavLink href=" ">Welcome, {user.name}</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/users">Users</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href=" " onClick={handleLogout}>Log Out</NavLink>
+          </NavItem>
+        </Nav>
+      </Collapse>
+      </Navbar>
       :
-        <nav>
-          <div className="nav-wrapper">
-            <ul id="nav-mobile" className="right">
-              <li><a href="/login" className="nav-link">Log In</a></li>
-              <li><a href="/users" className="nav-link">Users</a></li>
-              <li><a href="/signup" className="nav-link">Sign Up</a></li>
-            </ul>
-          </div>
-        </nav>
+      <Navbar color="light" light expand="md">
+      <NavbarToggler onClick={toggle} />
+      <Collapse isOpen={isOpen} navbar>
+        <Nav className="mr-auto" navbar>
+          <NavItem>
+            <NavLink href="/login">Log In</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/users">Users</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/signup">Sign Up</NavLink>
+          </NavItem>
+        </Nav>
+      </Collapse>
+      </Navbar>
       }
     </>
   )
