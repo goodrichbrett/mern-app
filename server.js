@@ -8,7 +8,7 @@ require('./config/database');
 
 const userRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
-const todoRouter = require('./routes/todos')
+const todoRouter = require('./routes/todos');
 
 const cors = require('cors');
 
