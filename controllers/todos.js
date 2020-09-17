@@ -9,7 +9,8 @@ module.exports = {
 };
 
 function index(req, res) {
-	Todo.find({}, (err, todos) => {
+	Todo.find({ addedBy: req.user._id }, (err, todos) => {
+		console.log('req', req.user);
 		res.status(200).json(todos);
 	});
 }

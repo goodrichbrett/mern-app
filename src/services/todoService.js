@@ -47,7 +47,11 @@ export function update(todo) {
 }
 
 export function getTodos(todos) {
-	return fetch(`${BASE_URL}${todos}`, { mode: 'cors' }).then((res) =>
-		res.json()
-	);
+	return fetch(
+		`${BASE_URL}${todos}`,
+		{
+			headers: { Authorization: 'Bearer ' + tokenService.getToken() },
+		},
+		{ mode: 'cors' }
+	).then((res) => res.json());
 }

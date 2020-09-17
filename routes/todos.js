@@ -2,10 +2,9 @@ var express = require('express');
 var router = express.Router();
 const todosCtrl = require('../controllers/todos');
 
-router.get('/', todosCtrl.index);
-
 // Below auth router is protected
 router.use(require('../config/auth'));
+router.get('/', todosCtrl.index);
 router.post('/', todosCtrl.create);
 router.put('/todos/:id', checkAuth, todosCtrl.update);
 router.delete('/todos/:id', checkAuth, todosCtrl.delete);
