@@ -8,6 +8,7 @@ import Users from '../Users/Users';
 import TodoList from '../../components/TodoList/TodoList';
 import './App.css';
 import AddTodo from '../../components/AddTodo/AddTodo';
+import * as todoAPI from '../../services/todoService'
 
 class App extends Component {
 	state = {
@@ -21,7 +22,11 @@ class App extends Component {
 
 	handleSignupOrLogin = () => {
 		this.setState({ user: authService.getUser() });
-	};
+  };
+  
+  handleAddTodo = async newTodoData => {
+    const newTodo = await //
+  }
 
 	render() {
 		const { user } = this.state;
