@@ -39,6 +39,17 @@ class App extends Component {
 		);
 	};
 
+	async componentDidMount() {
+		const todos = await todoAPI.getTodos(this.state.user.todos);
+		this.setState(
+			(state) => ({
+				todos: [...todos],
+			}),
+			() => this.props.history.push('/')
+		);
+		console.log(this.state);
+	}
+
 	render() {
 		const { user } = this.state;
 		return (
@@ -48,10 +59,11 @@ class App extends Component {
 					exact
 					path="/"
 					render={() => (
-						<main>
-							<h1>To-Do Tracker</h1>
-							{user ? <TodoList user={this.state.user} /> : ''}
-						</main>
+						<TodoList
+							todos={this.state.todos}
+							user={this.state.user}
+							handleAddTodo={this.handleAddTodo}
+						/>
 					)}
 				/>
 				<Route

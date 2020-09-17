@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const todosCtrl = require('../controllers/todos');
 
-router.get('/todos', todosCtrl.index);
+router.get('/', todosCtrl.index);
 
 // Below auth router is protected
 router.use(require('../config/auth'));
