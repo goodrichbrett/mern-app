@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const todosCtrl = require('../controllers/puppies');
-
+const todosCtrl = require('../controllers/todos');
 
 router.get('/todos', todosCtrl.index);
 router.get('/todos/:id', todosCtrl.show);
