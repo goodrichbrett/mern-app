@@ -32,9 +32,9 @@ class TodoList extends Component {
 
 	async componentDidMount() {
 		const todos = await todoAPI.getTodos(this.props.user.todos);
-		console.log(todos);
-		this.setState({ todos });
-		console.log(this.state);
+		console.log('pagetodos',todos);
+		this.setState({todos: todos});
+		console.log(this.state.todos)
 	}
 
 	render() {

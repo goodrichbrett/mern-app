@@ -6,6 +6,7 @@ module.exports = {
 	create,
 	delete: deleteTodo,
 	update,
+	getOne
 };
 
 function index(req, res) {
@@ -39,4 +40,11 @@ function update(req, res) {
 			res.status(200).json(todo);
 		}
 	);
+}
+
+function getOne(req, res) {
+	Todo.findById(req.params.id, (err, todo) => {
+		console.log('req', req.user);
+		res.status(200).json(todo);
+	});
 }

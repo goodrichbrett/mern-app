@@ -47,11 +47,16 @@ export function update(todo) {
 }
 
 export function getTodos(todos) {
-	return fetch(
-		`${BASE_URL}${todos}`,
-		{
-			headers: { Authorization: 'Bearer ' + tokenService.getToken() },
-		},
-		{ mode: 'cors' }
-	).then((res) => res.json());
+  const todosDetails= [];
+  todos.forEach(el => {
+    fetch(
+      `${BASE_URL}${el}`,
+      {
+        headers: { Authorization: 'Bearer ' + tokenService.getToken() },
+      },
+      { mode: 'cors' }
+    ).then((res) => res.json())
+    .then((data) => todosDetails.push(data));
+  });
+  return todosDetails;
 }
