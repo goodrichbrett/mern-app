@@ -39,11 +39,11 @@ class App extends Component {
 		);
 	};
 
-	// async componentDidMount() {
-	// 	const todos = await todoAPI.getTodos(this.state.user.todos);
-	// 	this.setState({ todos });
-	// 	console.log(this.state);
-	// }
+	async componentDidMount() {
+		const todos = await todoAPI.getTodos(this.state.todos);
+		this.setState({ todos });
+		console.log(this.state);
+	}
 
 	render() {
 		const { user } = this.state;
@@ -55,6 +55,7 @@ class App extends Component {
 					path="/"
 					render={() => (
 						<TodoList
+							todos={this.state.todos}
 							user={this.state.user}
 							handleAddTodo={this.handleAddTodo}
 						/>
