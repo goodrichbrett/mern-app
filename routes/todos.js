@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 const todosCtrl = require('../controllers/puppies');
 
+
 router.get('/todos', todosCtrl.index);
 router.get('/todos/:id', todosCtrl.show);
 router.post('/todos', todosCtrl.create);
+
 // Below auth router is protected
 router.use(require('../config/auth'));
 router.put('/todos/:id', todosCtrl.update);
