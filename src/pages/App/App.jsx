@@ -35,7 +35,7 @@ class App extends Component {
 			(state) => ({
 				todos: [...state.todos, newTodo],
 			}),
-			() => this.props.history.push('/todos')
+			() => this.props.history.push('/')
 		);
 	};
 
@@ -50,27 +50,7 @@ class App extends Component {
 					render={() => (
 						<main>
 							<h1>To-Do Tracker</h1>
-							{user ? (
-								<TodoList
-									user={this.state.user}
-									todoList={[
-										{
-											id: '001',
-											name: 'Have Breakfast',
-											isDone: false,
-											dueDate: '',
-										},
-										{
-											id: '002',
-											name: 'Shower',
-											isDone: true,
-											dueDate: '',
-										},
-									]}
-								/>
-							) : (
-								''
-							)}
+							{user ? <TodoList user={this.state.user} /> : ''}
 						</main>
 					)}
 				/>
@@ -102,7 +82,12 @@ class App extends Component {
 				<Route
 					exact
 					path="/todos/add"
-					render={() => <AddTodo user={this.state.user} />}
+					render={() => (
+						<AddTodo
+							user={this.state.user}
+							handleAddTodo={this.handleAddTodo}
+						/>
+					)}
 				/>
 			</>
 		);
