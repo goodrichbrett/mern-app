@@ -3,7 +3,7 @@ import { Card, CardBody, CardTitle, CardText } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
-const ToDo = ({ name, isDone, dueDate }) => {
+const ToDo = ({ name, isDone, dueDate, handleDeleteTodo, todo }) => {
 	return (
 		<div>
 			<Card>
@@ -14,7 +14,12 @@ const ToDo = ({ name, isDone, dueDate }) => {
 					</CardText>
 				</CardBody>
 				<Link to={'/'}>
-					<Button color="primary">Delete</Button>
+					<Button
+						onClick={() => handleDeleteTodo(todo._id)}
+						color="primary"
+					>
+						Delete
+					</Button>
 				</Link>
 				<Link to={'/'}>
 					<Button color="primary">Update</Button>

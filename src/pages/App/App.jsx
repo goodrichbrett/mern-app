@@ -39,6 +39,20 @@ class App extends Component {
 		);
 	};
 
+	handleDeleteTodo = async (id) => {
+		if (authService.getUser()) {
+			await todoAPI.deleteOne(id);
+			this.setState(
+				(state) => ({
+					todos: state.todos.filter((t) => t._id !== id),
+				}),
+				() => this.props.history.push('/todos')
+			);
+		} else {
+			this.props.history.push('/login');
+		}
+	};
+
 	async componentDidMount() {
 		const todos = await todoAPI.getTodos(this.state.todos);
 		this.setState({ todos });
@@ -58,6 +72,7 @@ class App extends Component {
 							todos={this.state.todos}
 							user={this.state.user}
 							handleAddTodo={this.handleAddTodo}
+							handleDeleteTodo={this.handleDeleteTodo}
 						/>
 					)}
 				/>

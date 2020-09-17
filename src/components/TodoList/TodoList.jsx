@@ -3,19 +3,22 @@ import ToDo from '../../components/ToDo/ToDo';
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
-const TodoList = ({ user, todos }) => {
+const TodoList = (props) => {
 	return (
 		<>
 			<Link to={'/todos/add'}>
 				<Button color="primary">Add New ToDo</Button>
 			</Link>
 
-			{todos.map((todo) => (
+			{props.todos.map((todo) => (
 				<ToDo
 					key={todo.id}
 					name={todo.name}
 					isDone={todo.isDone}
 					dueDate={todo.dueDate}
+					handleDeleteTodo={props.handleDeleteTodo}
+					user={props.user}
+					todo={todo}
 				/>
 			))}
 		</>
