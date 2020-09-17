@@ -5,6 +5,7 @@ import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
 import authService from "../../services/authService";
 import Users from "../Users/Users";
+import TodoList from '../../components/TodoList/TodoList'
 import "./App.css";
 
 class App extends Component {
@@ -31,7 +32,8 @@ class App extends Component {
           path="/"
           render={() => (
             <main>
-              <h1>Welcome. This is an authorization template.</h1>
+              <h1>To-Do Tracker</h1>
+              {user ? <TodoList user={this.state.user} todoList={[{id: '001', name: 'Have Breakfast', isDone: false, dueDate: ''}, {id: '002', name: 'Shower', isDone: true, dueDate:''}]}/> : ''}
             </main>
           )}
         />

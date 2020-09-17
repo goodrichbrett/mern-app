@@ -1,13 +1,13 @@
 import React from "react";
 import { Card, CardBody, CardTitle, CardText } from "reactstrap";
 
-const ToDo = (props) => {
+const ToDo = ({name, isDone, dueDate}) => {
   return (
     <div>
       <Card>
         <CardBody>
-          <CardTitle>{this.props.name}</CardTitle>
-          <CardText>IsDone: {this.props.isDone} Due: {this.props.dueDate}</CardText>
+          <CardTitle>{name}</CardTitle>
+          <CardText>IsDone: {(isDone ? 'true': 'false')} Due: {dueDate}</CardText>
         </CardBody>
       </Card>
     </div>
