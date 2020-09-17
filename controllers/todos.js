@@ -16,11 +16,8 @@ function index(req, res) {
 
 function create(req, res) {
 	req.body.addedBy = req.user._id;
-	console.log(req.body.addedBy);
 	Todo.create(req.body).then((todo) => {
-		console.log(todo);
 		User.findById(req.user._id).then((user) => {
-			console.log(user.todos);
 			user.todos.push(todo._id);
 			user.save();
 			console.log(user.todos);
